@@ -4,12 +4,8 @@ const ctx = canvas.getContext("2d");
 CANVAS_WIDTH = canvas.width = 500;
 CANVAS_HEIGHT = canvas.height = 1000;
 
-// enemy1 = {
-//   x: 0,
-//   y: 0,
-//   width: 200,
-//   height: 200,
-// };
+numberOfEnemies = 100;
+enemyArray = [];
 
 class Enemy {
   constructor() {
@@ -22,14 +18,18 @@ class Enemy {
     this.x++;
     this.y++;
   }
+  draw() {
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
 }
 
-const enemy1 = new Enemy();
+for (let i = 0; i < numberOfEnemies; i++) {
+  enemyArray.push(new Enemy());
+}
+console.log(enemyArray);
 
 function animate() {
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  enemy1.update();
-  ctx.fillRect(enemy1.x, enemy1.y, enemy1.width, enemy1.height);
   requestAnimationFrame(animate);
 }
 
