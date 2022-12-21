@@ -4,9 +4,7 @@ const ctx = canvas.getContext("2d");
 canvas.width = 500;
 canvas.height = 700;
 const explosions = [];
-
-ctx.fillStyle = "white";
-ctx.fillRect(50, 50, 100, 150);
+let canvasPosition = canvas.getBoundingClientRect();
 
 class Explosion {
   constructor(x, y) {
@@ -37,3 +35,9 @@ class Explosion {
     );
   }
 }
+
+window.addEventListener("click", function (e) {
+  console.log(e);
+  ctx.fillStyle = "white";
+  ctx.fillRect(e.x - canvasPosition.left, e.y - canvasPosition.top, 50, 50);
+});
