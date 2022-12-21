@@ -5,6 +5,9 @@ canvas.width = 500;
 canvas.height = 700;
 const explosions = [];
 
+ctx.fillStyle = "white";
+ctx.fillRect(50, 50, 100, 150);
+
 class Explosion {
   constructor(x, y) {
     this.x = x;
@@ -20,5 +23,17 @@ class Explosion {
   update() {
     this.frame++;
   }
-  draw() {}
+  draw() {
+    ctx.drawImage(
+      this.image,
+      this.spriteWidth * this.frame,
+      0,
+      this.spriteWidth,
+      this.spriteHeight,
+      this.x,
+      this.y,
+      this.width,
+      this.height
+    );
+  }
 }
