@@ -13,8 +13,8 @@ class Enemy {
     this.image = new Image();
     this.image.src = "enemy3.png";
     this.speed = Math.random() * 4 + 1;
-    this.spriteWidth = 266;
-    this.spriteHeight = 188;
+    this.spriteWidth = 218;
+    this.spriteHeight = 177;
     this.width = this.spriteWidth / 2;
     this.height = this.spriteHeight / 2;
     this.x = Math.random() * (canvas.width - this.width);
@@ -22,12 +22,17 @@ class Enemy {
     this.frame = 0;
     this.flapSpeed = Math.floor(Math.random() * 3 + 1);
     this.angle = 4;
-    this.angleSpeed = Math.random() * 0.2;
-    this.curve = Math.random() * 7;
+    this.angleSpeed = Math.random() * 2.5 + 0.5;
+    // this.curve = Math.random() * 7;
   }
   update() {
-    this.x -= this.speed;
-    this.y += this.curve * Math.sin(this.angle);
+    this.x =
+      (canvas.width / 2) * Math.sin((this.angle * Math.PI) / 250) +
+      (canvas.width / 2 - this.width / 2);
+    this.y =
+      (canvas.height / 2) * Math.cos((this.angle * Math.PI) / 250) +
+      (canvas.height / 2 - this.width / 2);
+    // this.y += this.curve * Math.sin(this.angle);
     this.angle += this.angleSpeed;
     if (this.x + this.width < 0) {
       this.x = canvas.width;
