@@ -1,8 +1,16 @@
 /** @type {HTMLCanvasElement} */
 const canvas = document.getElementById("canvas1");
+const canvas2 = document.getElementById("canvas2");
+const canvas3 = document.getElementById("canvas3");
 const ctx = canvas.getContext("2d");
+const ctx2 = canvas2.getContext("2d");
+const ctx3 = canvas3.getContext("2d");
 CANVAS_WIDTH = canvas.width = 500;
 CANVAS_HEIGHT = canvas.height = 1000;
+CANVAS_WIDTH2 = canvas2.width = 500;
+CANVAS_HEIGHT2 = canvas2.height = 1000;
+CANVAS_WIDTH3 = canvas3.width = 500;
+CANVAS_HEIGHT3 = canvas3.height = 1000;
 numberOfEnemies = 100;
 enemyArray = [];
 
