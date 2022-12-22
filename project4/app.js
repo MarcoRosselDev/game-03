@@ -37,7 +37,18 @@ class Explosion {
 }
 
 window.addEventListener("click", function (e) {
-  console.log(e);
-  ctx.fillStyle = "white";
-  ctx.fillRect(e.x - canvasPosition.left, e.y - canvasPosition.top, 50, 50);
+  let positionX = e.x - canvasPosition.left;
+  let positionY = e.y - canvasPosition.top;
+
+  explosions.push(new Explosion(positionX, positionY));
 });
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < explosions.length; i++) {
+    explosions[i].update();
+    explosions[i].draw();
+  }
+  requestAnimationFrame(animate);
+}
+animate();
