@@ -6,6 +6,7 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let score = 0;
+ctx.font = "50px Impact";
 
 let timeToNextRaven = 0;
 let ravenInterval = 500;
@@ -60,6 +61,17 @@ class Raven {
   }
 }
 
+function drawScore() {
+  ctx.fillStyle = "black";
+  ctx.fillText("Score: " + score, 50, 75);
+  ctx.fillStyle = "white";
+  ctx.fillText("Score: " + score, 55, 80);
+}
+
+window.addEventListener("click", function (e) {
+  console.log(e.x, e.y);
+});
+
 function animate(timestamp) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -70,6 +82,7 @@ function animate(timestamp) {
     ravens.push(new Raven());
     timeToNextRaven = 0;
   }
+  drawScore();
   [...ravens].forEach((Object) => Object.update(deltatime));
   [...ravens].forEach((Object) => Object.draw());
   ravens = ravens.filter((e) => !e.markedForDeletion);
