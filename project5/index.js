@@ -97,12 +97,15 @@ class Explosion {
     this.sound.src = "magical_1.ogg";
     this.timeSinceLastFrame = 0;
     this.frameInterval = 200;
+    this.markedForDeletion = false;
   }
   update(deltatime) {
     if (this.frame === 0) this.sound.play();
     this.timeSinceLastFrame += deltatime;
     if (this.timeSinceLastFrame > this.frameInterval) {
       this.frame++;
+      this.timeSinceLastFrame = 0;
+      if (this.frame > 5) this.markedForDeletion = true;
     }
   }
   draw() {
@@ -162,9 +165,10 @@ function animate(timestamp) {
     });
   }
   drawScore();
-  [...ravens].forEach((Object) => Object.update(deltatime));
-  [...ravens].forEach((Object) => Object.draw());
+  [...ravens, ...explosions].forEach((Object) => Object.update(deltatime));
+  [...ravens, ...explosions].forEach((Object) => Object.draw());
   ravens = ravens.filter((e) => !e.markedForDeletion);
+  explosions = explosions.filter((e) => !e.markedForDeletion);
 
   requestAnimationFrame(animate);
 }
