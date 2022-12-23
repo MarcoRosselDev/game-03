@@ -28,8 +28,6 @@ class Raven {
   }
 }
 
-const raven = new Raven();
-
 function animate(timestamp) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -40,6 +38,8 @@ function animate(timestamp) {
     ravens.push(new Raven());
     timeToNextRaven = 0;
   }
+  [...ravens].forEach((Object) => Object.update());
+  [...ravens].forEach((Object) => Object.draw());
 
   requestAnimationFrame(animate);
 }
